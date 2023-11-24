@@ -1,8 +1,9 @@
 package main
 
 import (
-	"os"
 	"fmt"
+	"os"
+	"time"
 
 	"gopkg.in/yaml.v3"
 )
@@ -10,29 +11,33 @@ import (
 func writeMediaMTXyml(mtxyml_path string, streamMap map[string]interface{}, ymlMap map[string]interface{}) error {
 
 	// Edit ymlMap based on streamMap
-	// readUser := streamMap["user"]
-	// readPass := streamMap["pass"]
-	// data := ymlMap["paths"]
-	// pdata := data["proxied0"]
-	// user := pdata["readUser"]
+	if paths, ok := ymlMap["paths"].(map[string]interface {}); ok {
+		if proxied0, ok := paths["proxied0"].(map[string]interface {}); ok {
+			if readPass, ok := proxied0["readPass"]; ok {
+				// Print the original value
+				fmt.Printf("Original Value: %v\n", readPass)
 
-	if nestedValue, ok := ymlMap["paths"].(map[string]interface {}); ok {
-		// key3 is a map, access its nested values
-		if nestedValue1, ok := nestedValue["proxied0"].(map[string]interface {}); ok {
-			fmt.Printf("Nested Value: %v\n", nestedValue1)
-			if nestedKey, ok := nestedValue1["readPass"]; ok {
-				fmt.Printf("Nested Value: %v\n", nestedKey)
+				// Modify the original value
+				proxied0["readPass"] = streamMap["pass"]
 			} else {
-				fmt.Println("Nested key 'nested_key' not found.")
+				fmt.Println("Nested key 'readPass' not found.")
+			}
+			if readPass, ok := proxied0["readUser"]; ok {
+				// Print the original value
+				fmt.Printf("Original Value: %v\n", readPass)
+
+				// Modify the original value
+				proxied0["readUser"] = streamMap["user"]
+
+			} else {
+				fmt.Println("Nested key 'readPass' not found.")
 			}
 		} else {
-			fmt.Println("Nested key 'nested_key' not found.")
+			fmt.Println("Nested key 'proxied0' not found.")
 		}
 	} else {
-		fmt.Println("Key 'key3' not found or not a map.")
+		fmt.Println("Key 'paths' not found or not a map.")
 	}
-	// ((ymlMap["paths"].(map[string]interface {}))["proxied0"].(map[string]interface {}))["readPass"]
-
 
 	// Marshal the map into YAML format
 	yamlBytes, err := yaml.Marshal(ymlMap)
@@ -45,6 +50,8 @@ func writeMediaMTXyml(mtxyml_path string, streamMap map[string]interface{}, ymlM
 	if err != nil {
 		return err
 	}
+
+	time.Sleep(1 *time.Second) // Allow some time for mediamtx to register the yml change and rerun accordingly
 
 	return nil
 

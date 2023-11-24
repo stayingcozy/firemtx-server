@@ -554,7 +554,7 @@ paths:
   # my_camera:
   #   source: rtsp://my_camera
   proxied:
-    readUser: user0
+    readUser: user0 # RJ0pPZEpmqPdiwMNBsuErIKU8zI3
     readPass: pass0
 
   # Settings under path "all_others" are applied to all paths that

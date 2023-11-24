@@ -13,19 +13,14 @@ func runMediaMTX() error {
 
 	for {
 
-		// ffmpeg command, h264 video codec
-		cmd := exec.Command(
-			"./mediamtx",
-		)
+		cmd := exec.Command("./mediamtx")
 
+		// Run the command and check for errors
 		err := cmd.Run()
-
-		// if err == nil {
-		// 	// Command succeeded, break out of the loop
-		// 	break
-		// }
-
-		fmt.Printf("Attempt %d failed: %v\n", attempt, err)
+		if err != nil {
+			fmt.Printf("Error running command: %v\n", err)
+			return err
+		}
 
 		if attempt >= maxAttempts {
 			return fmt.Errorf("max attempts reached, unable to start mediamtx")
@@ -33,9 +28,6 @@ func runMediaMTX() error {
 
 		// Increment the attempt counter and wait for a moment before retrying
 		attempt++
-		time.Sleep(1 * time.Second)
+		time.Sleep(100 * time.Millisecond)
 	}
-
-	// return nil
-
 }

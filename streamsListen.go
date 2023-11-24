@@ -29,5 +29,4 @@ func streamsListen(ctx context.Context, client *firestore.Client) (map[string]in
 			return streamData, streamDocName, nil
 		}
 	}
-	// return nil, "", nil
 }
