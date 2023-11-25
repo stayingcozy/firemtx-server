@@ -17,8 +17,8 @@ type Config struct {
 
 	Paths struct {
 		Proxied struct {
-			ReadUser string `yaml:"readUser"`
-			ReadPass string `yaml:"readPass"`
+		ReadUser string `yaml:"readUser"`
+		ReadPass string `yaml:"readPass"`
 		} `yaml:"proxied"`
 
 		AllOthers struct{} `yaml:"all_others"`
