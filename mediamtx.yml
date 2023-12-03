@@ -1,4 +1,4 @@
-runOnDisconnect: ./brokenpipe/brokenpipe
+runOnDisconnect: ./brokenpipe/brokenpipe i7q3jTIJzHmGy8dk8SoTWMVHr0Wk
 rtsp: yes
 webrtc: yes
 rtmp: no
@@ -7,5 +7,5 @@ srt: no
 paths:
     proxied:
         readUser: RJ0pPZEpmqPdiwMNBsuErIKU8zI3
-        readPass: vst3QjQnYsrHZ7xnK4Zq
+        readPass: 0jEVA1A8KDw3DqXsqWwd
     all_others: {}

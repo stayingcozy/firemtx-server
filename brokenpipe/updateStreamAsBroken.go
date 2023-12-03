@@ -37,12 +37,14 @@ func readFromFile(filename string) (string, error) {
 
 func main() {
 
-	// read streamName txt file
-	writeFile := "lastCall.txt"
-	streamName, errSN := readFromFile(writeFile)
-	if errSN != nil {
-		log.Fatalln("Error reading streamName txt file:", errSN)
+	// grab streamName
+	args := os.Args
+	// Check if at least one argument is provided
+	if len(args) < 2 {
+		log.Fatalln("Usage: updateStreamAsBroken arg1 was not provided")
+		return
 	}
+	streamName := args[1]
 
 	// Firebase Init
 	path_to_serviceAccountKey := "brightpaw-d6fd6-firebase-adminsdk-qqfyk-248ef821b0.json"

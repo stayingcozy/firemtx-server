@@ -3,6 +3,7 @@ package main
 import (
 	"os"
 	"regexp"
+	"strings"
 
 	"gopkg.in/yaml.v3"
 )
@@ -60,11 +61,16 @@ func readConfig(filename string) (*Config, error) {
 	return &config, nil
 }
 
-func writeConfig(filename string, newMap map[string]interface{}, config *Config) error {
-
+func writeConfig(filename string, newMap map[string]interface{}, config *Config, streamName string) error {
+	
 	// set value in newMap from firebase specific stream to new yml config
-	config.Paths.Proxied.ReadUser = newMap["user"].(string)
-	config.Paths.Proxied.ReadPass = newMap["pass"].(string)
+	config.Paths.Proxied.ReadUser = strings.TrimSpace(newMap["user"].(string))
+	config.Paths.Proxied.ReadPass = strings.TrimSpace(newMap["pass"].(string))
+
+
+	// set value in runOnDisconnect 
+	cmds := strings.Split(config.RunOnDisconnect," ")
+	config.RunOnDisconnect = cmds[0] + " " + streamName
 
 	data, err := yaml.Marshal(config)
 	if err != nil {

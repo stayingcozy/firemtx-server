@@ -17,7 +17,7 @@ srt: no
 
 paths:
   proxied:
-    readUser: RJ0pPZEpmqPdiwMNBsuErIKU8zI3 # user0
+    readUser: RJ0pPZEpmqPdiwMNBsuErIKU8zI3
     readPass: pass0
 
   # Settings under path "all_others" are applied to all paths that
