@@ -1,11 +1,25 @@
-runOnDisconnect: ./brokenpipe/brokenpipe i7q3jTIJzHmGy8dk8SoTWMVHr0Wk
+#runOnConnect: ffmpeg -re stream_loop -1 -i test.mp4 -c:v libx264 -preset ultrafast -f rtsp rtsp://192.168.86.27:8555
+#runOnConnectRestart: yes
+runOnDisconnect: "./brokenpipe/brokenpipe"
+
+###############################################
+# Protocols
+
 rtsp: yes
 webrtc: yes
+
 rtmp: no
 hls: no
 srt: no
+
+###############################################
+# Path settings
+
 paths:
-    proxied:
-        readUser: RJ0pPZEpmqPdiwMNBsuErIKU8zI3
-        readPass: 0jEVA1A8KDw3DqXsqWwd
-    all_others: {}
+  proxied:
+    readUser: RJ0pPZEpmqPdiwMNBsuErIKU8zI3
+    readPass: pass0
+
+  # Settings under path "all_others" are applied to all paths that
+  # MUST be included
+  all_others:
