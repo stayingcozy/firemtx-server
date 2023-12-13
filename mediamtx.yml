@@ -7,6 +7,7 @@ runOnDisconnect: "./brokenpipe/brokenpipe"
 
 rtsp: yes
 webrtc: yes
+api: yes
 
 rtmp: no
 hls: no

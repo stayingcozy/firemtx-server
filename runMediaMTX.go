@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os/exec"
 	"time"
+	"os"
 )
 
 func runMediaMTX() error {
@@ -15,10 +16,14 @@ func runMediaMTX() error {
 
 		cmd := exec.Command("./mediamtx")
 
+		// Create pipes to capture command output
+		cmd.Stdout = os.Stdout
+		cmd.Stderr = os.Stderr
+
 		// Run the command and check for errors
 		err := cmd.Run()
 		if err != nil {
-			fmt.Printf("Error running command: %v\n", err)
+			fmt.Printf("Error running mediamtx command: %v\n", err)
 			return err
 		}
 

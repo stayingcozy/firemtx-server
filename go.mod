@@ -1,6 +1,6 @@
 module firemtx-server
 
-go 1.21.4
+go 1.23
 
 require (
 	cloud.google.com/go/firestore v1.14.0
