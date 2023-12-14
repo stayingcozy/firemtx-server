@@ -26,11 +26,11 @@ func patch(url string, resource string, jsonBody []byte) {
 	// fmt.Printf("client: got response!\n")
 	fmt.Printf("patch client: status code: %d\n", res.StatusCode)
 
-	resBody, err := io.ReadAll(res.Body)
+	_, err = io.ReadAll(res.Body)
 	if err != nil {
 		fmt.Printf("client: could not read response body: %s\n", err)
 	}
-	fmt.Printf("client: response body: %s\n", resBody)
+	// fmt.Printf("client: response body: %s\n", resBody)
 }
 
 func post(url string, resource string, jsonBody []byte) error {
@@ -56,12 +56,12 @@ func post(url string, resource string, jsonBody []byte) error {
 	// fmt.Printf("client: got response!\n")
 	fmt.Printf("post client: status code: %d\n", res.StatusCode)
 
-	resBody, err := io.ReadAll(res.Body)
+	_, err = io.ReadAll(res.Body)
 	if err != nil {
 		fmt.Printf("client: could not read response body: %s\n", err)
 		return err
 	}
-	fmt.Printf("client: response body: %s\n", resBody)
+	// fmt.Printf("client: response body: %s\n", resBody)
 
 	return nil
 }
