@@ -1,12 +1,10 @@
-FROM bluenviron/mediamtx:latest
+FROM golang:1.21
 
 WORKDIR /app
 
-COPY /brokenpipe/brokenpipe /brokenpipe
+COPY . .
 
-COPY firemtx-server .
+RUN go build .
 
-COPY *.json .
-
-CMD ["./firemtx-server"]
+CMD ["/app/firemtx-server"]
 
