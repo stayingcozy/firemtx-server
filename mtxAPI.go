@@ -3,7 +3,6 @@ package main
 import(
 	"fmt"
 	"time"
-	"strings"
 )
 
 func initAPI(server_url string) {
@@ -13,11 +12,7 @@ func initAPI(server_url string) {
 	post(server_url, post_resource+setting, valbod)
 }
 
-func patchAPI(server_url string, newMap map[string]interface{}, streamName string, cmd string) {
-
-	// Set new user and password for authentication
-	user := strings.TrimSpace(newMap["user"].(string))
-	pass := strings.TrimSpace(newMap["pass"].(string))
+func patchAPI(server_url string, streamName string, cmd string, user string, pass string) {
 
 	// Set new command
 	cmd_id := cmd + " " + streamName
