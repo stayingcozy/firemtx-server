@@ -3,7 +3,9 @@
 </p>
 
 # firemtx-server
-MediaMTX server for video streams with firebase communication. This media server acts as a relay from video source to viewer. If desired to stream video to website (https) check out caddy-video-stream repository.
+MediaMTX server for video streams with firebase communication. This media server acts as a relay from video source to viewer. Having a media server allows you to stream multiple video from your single source. For example one to the viewer and one to a Machine Learning / Computer Vision server. See pyRTCvision repository for ML server to process live video and upload results to your firebase database.
+
+If desired to stream video to website (https) check out caddy-video-stream repository.
 
 ## Install
 Install
